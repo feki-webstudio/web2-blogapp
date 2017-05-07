@@ -1,0 +1,44 @@
+<ion-header>
+    <ion-navbar color="primary">
+        <ion-title>
+            {{ post.title }}
+        </ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+    
+    {{ post.content }}
+    
+    
+    
+    
+    
+    <div  class="comment-add">
+    
+        <div *ngIf="loading" text-center>
+            <ion-spinner  ></ion-spinner>
+        </div>
+        
+        <div *ngIf="!loading">
+            <ion-item>
+                <ion-input [(ngModel)]="comment" type="text" placeholder="Szólj hozzá.."></ion-input>
+            </ion-item>
+            <ion-item text-right>
+                <button icon-left="" ion-button (click)="addComment()" >
+                    <ion-icon name="chatbubbles"></ion-icon>
+                    Hozzászólok
+                </button>
+            </ion-item>
+        </div>
+       
+    </div>
+    
+    <ion-item *ngFor="let comment of post.comments" text-wrap>
+        {{ comment.content}}
+        <ion-note>
+                {{ comment.user.name }}
+        </ion-note>
+    </ion-item>
+
+</ion-content>
